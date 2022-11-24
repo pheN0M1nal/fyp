@@ -1,24 +1,44 @@
 import React from 'react'
+import axios from 'axios'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 import { toast } from 'react-toastify'
 function SignIn() {
   const [showPassword, setShowPassword] = useState(false)
+  const [emailerror, setError] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   })
 
   const { email, password } = formData
-
   const navigate = useNavigate()
 
-  const onChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.id]: e.target.value,
-    }))
+  function isValidEmail(mail) {
+    return /\S+@\S+\. \S+/.test(mail)
+  }
+
+  const onChange = async (e) => {
+    if (!isValidEmail(email)) {
+      setError('Invalid Email')
+    } else {
+      setError(null)
+      var errorMsg = document.querySelector('.errorMsg')
+      axios
+        .get('url', {
+          email: email,
+        })
+        .then((data) => {
+          setFormData((prevState) => ({
+            ...prevState,
+            [e.target.id]: e.target.value,
+          }))
+          errorMsg.classList.add('hidden')
+        })
+        .catch((error) => {
+          errorMsg.classList.remove('hidden')
+        })
+    }
   }
 
   const togglePasswordEye = () => {
@@ -34,11 +54,18 @@ function SignIn() {
   }
   const onSubmit = async (e) => {
     e.preventDefault()
-    try {
-      //get request
-    } catch (error) {
-      toast.error('Bad User Credentials')
-    }
+    axios
+      .get('api', {
+        email: email,
+        password: password,
+      })
+      .then((data) => {
+        toast.success('Login Successfull')
+        navigate('/')
+      })
+      .catch((error) => {
+        toast.error('Bad User Credentials')
+      })
   }
 
   return (
@@ -56,17 +83,23 @@ function SignIn() {
                   >
                     <input
                       type='url'
-                      className='p-3 w-full border borde-gray-300 rounded-md text-slate-700 placeholder:font-sans placeholder:font-light italic'
+                      className='p-3 w-full rounded-md text-slate-700 placeholder:font-sans placeholder:font-light italic transition-all focus:outline-violet-600'
                       placeholder='Enter your email address'
                       id='email'
                       value={email}
                       onChange={onChange}
                     />
                   </div>
+                  <span className='mt-1 italic hidden errorMsg text-white'>
+                    Email doesn't exist
+                  </span>
+                  {emailerror && (
+                    <span className='mt-1 italic text-white'>{emailerror}</span>
+                  )}
                   <div className='relative mt-3'>
                     <input
                       type={showPassword ? 'text' : 'password'}
-                      className='p-3 w-full border borde-gray-300 rounded-md text-slate-700 placeholder:font-sans placeholder:font-light italic'
+                      className='p-3 w-full rounded-md text-slate-700 placeholder:font-sans placeholder:font-light italic transition-all focus:outline-violet-600'
                       placeholder='Enter your password'
                       id='password'
                       value={password}
@@ -79,10 +112,10 @@ function SignIn() {
                       <i className='changeeye fa fa-eye-slash cursor-pointer text-slate-900'></i>
                     </span>
                   </div>
-                  <div className='mt-2 ml-28'>
+                  <div className='mt-2'>
                     <Link
                       to='/forgot-password'
-                      className='hover:text-violet-600'
+                      className='hover:text-violet-600 text-sm italic'
                     >
                       Forgot Password?
                     </Link>
@@ -94,7 +127,7 @@ function SignIn() {
                     </button>
                   </div>
                 </form>
-                <div className='relative mt-5'>
+                <div className='relative mt-5 italic'>
                   <p>
                     Don't have an account?
                     <Link to='/sign-up' className='pl-4 hover:text-violet-600'>
