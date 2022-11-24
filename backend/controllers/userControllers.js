@@ -64,6 +64,15 @@ const loginUser = asyncHandler(async (req, res) => {
 		throw new Error('Invalid Email')
 	}
 })
+
+
+const allUsers = asyncHandler(async (req, res) => {
+    
+    User.find({}).then(function (users) {
+        res.send(users);
+    })
+
+})
     
  
-module.exports = {registerUser, loginUser};
+module.exports = {registerUser, loginUser, allUsers};
