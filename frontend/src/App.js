@@ -1,38 +1,22 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import {
-	decrement,
-	increment,
-	incrementByAmount,
-} from './store/reducers/counterSlice'
-
-const App = () => {
-	const count = useSelector(state => state.counter.value)
-	const dispatch = useDispatch()
-
-	const obj = {
-		value: 10,
-	}
-
-	return (
-		<div>
-			<div>
-				<button
-					aria-label=' value'
-					onClick={() => dispatch(incrementByAmount(obj))}
-				>
-					Increment
-				</button>
-				<span>{count}</span>
-				<button
-					aria-label='Decrement value'
-					onClick={() => dispatch(decrement())}
-				>
-					Decrement
-				</button>
-			</div>
-		</div>
-	)
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import ForgotPassword from "./pages/ForgotPassword";
+import HomePage from "./pages/HomePage";
+function App() {
+  return (
+    <>
+      <Router>
+        <Routes>
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </Router>
+    </>
+  );
 }
-
-export default App
+export default App;
