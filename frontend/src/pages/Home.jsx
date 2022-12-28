@@ -9,13 +9,13 @@ import img4 from '../assets/images/winter-forest-trees-landscape-frost-snow-cove
 function Home() {
   return (
     <>
-      <div className='container flex flex-col mx-auto max-w-full'>
+      <div className='container flex flex-col max-w-full'>
         {/* First Section: Main heading with search bar and Picture */}
         <section className='search'>
           <div className='container flex flex-col mx-0 sm:mx-auto sm:items-start'>
             {/* Main Heading with search bar */}
             <div className='flex flex-col w-80 h-80 search'>
-              <span className='capitalize text-4xl font-semibold text-zinc-700 mt-5'>
+              <span className='capitalize text-4xl font-bold text-zinc-700 mt-5'>
                 Create & Wear on demand
               </span>
               <p className='mt-5 text-zinc-700'>
@@ -41,12 +41,12 @@ function Home() {
         {/* Best Product Category */}
         <section className='mt-20'>
           <div className='container flex flex-col mx-auto max-w-full sm:flex-row'>
-            <div className='flex flex-col w-80 h-40'>
-              <span className='capitalize text-4xl font-semibold text-veryDarkViolet'>
+            <div className='flex flex-col w-80 h-40 mx-0 sm:mx- sm:items-start'>
+              <span className='capitalize text-4xl font-bold text-zinc-700 ml-7'>
                 Best Product Category
               </span>
               <div className='allproduct'>
-                <button>
+                <button className='text-zinc-700'>
                   See all product{' '}
                   <i class='fa fa-long-arrow-right' aria-hidden='true'></i>
                 </button>
@@ -71,15 +71,23 @@ function Home() {
           </div>
         </section>
 
-        <div className='h-56'></div>
+        <div className='h-20'></div>
 
         {/* Trendy Categories */}
         <section>
-          <div className='container flex flex-col items-center justify-center mx-auto'>
-            <div className='flex items-center justify-center'>
-              <span className='font-bold text-slate-600'>
-                Trendy Categories
-              </span>
+          <div className='flex flex-col items-center justify-center'>
+            <div className='flex flex-col items-center justify-center space-y-4 text-center w-80'>
+              <div>
+                <span className='text-3xl text-zinc-700 font-bold'>
+                  Trendy Categories
+                </span>
+              </div>
+              <div className='text-center'>
+                <span>
+                  Create & sell custom products with your designs, we'll print
+                  and ship them to your customers
+                </span>
+              </div>
             </div>
           </div>
         </section>

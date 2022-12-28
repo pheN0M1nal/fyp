@@ -86,19 +86,10 @@
     }
 }
 
-/* .trendy {
+.trendy {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 150px;
-} */
-
-/* .trendy span {
-    text-transform: capitalize;
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    font-weight: 600;
-} */
+}
 
 /* @media screen and (max-width: 288px) {
     .trendy {

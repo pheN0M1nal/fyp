@@ -23,28 +23,16 @@ const Navbar = () => {
             <h1 className='font-bold'>STee</h1>
             {/* left Menu */}
             <div className='hidden lg:flex font-bold space-x-14'>
-              <Link
-                to='/'
-                className='text-grayishViolet hover:text-veryDarkViolet'
-              >
+              <Link to='/' className='text-zinc-700 hover:text-veryDarkViolet'>
                 Home
               </Link>
-              <Link
-                to='/'
-                className='text-grayishViolet hover:text-veryDarkViolet'
-              >
+              <Link to='/' className='text-zinc-700 hover:text-veryDarkViolet'>
                 Category
               </Link>
-              <Link
-                to='/'
-                className='text-grayishViolet hover:text-veryDarkViolet'
-              >
+              <Link to='/' className='text-zinc-700 hover:text-veryDarkViolet'>
                 StartCreating
               </Link>
-              <Link
-                to='/'
-                className='text-grayishViolet hover:text-veryDarkViolet'
-              >
+              <Link to='/' className='text-zinc-700 hover:text-veryDarkViolet'>
                 About
               </Link>
             </div>
@@ -54,7 +42,7 @@ const Navbar = () => {
             <div className='px-7 py-3'>
               <Link
                 to='/sign-in'
-                className='text-grayishViolet hover:text-veryDarkViolet'
+                className='text-zinc-700 hover:text-veryDarkViolet'
               >
                 SignIn/SignUp
               </Link>
