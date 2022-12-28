@@ -70,10 +70,10 @@ function SignIn() {
 
   return (
     <>
-      <div className='flex items-center justify-center min-h-screen bg-slate-800 '>
+      <div className='flex items-center justify-center min-h-screen'>
         <div className='flex flex-col my-12 p-3' style={{ width: '340px' }}>
           <div className='shadow-2xl shadow-black text-white hover:shadow-indigo-500/40 duration-200'>
-            <div className='p-8 mt-2 rounded-t-xl bg-slate-800'>
+            <div className='p-8 bg-slate-800'>
               <div className='text-center uppercase'>Login</div>
               <div className='mt-2'>
                 <form onSubmit={onSubmit}>

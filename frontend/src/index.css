@@ -1,3 +1,117 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nav-links {
+    @apply w-full text-center text-grayishViolet hover:text-veryDarkViolet;
+}
+
+.hamburger {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    transition: all 0.25s;
+    position: relative;
+}
+.hamburger-top,
+.hamburger-middle,
+.hamburger-bottom {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 3px;
+    top: 0;
+    left: 0;
+    background: #9c9aa6;
+    transform: rotate(0);
+    transition: all 0.5s;
+}
+.hamburger-middle {
+    transform: translateY(7px);
+
+}
+.hamburger-bottom {
+    transform: translateY(14px);
+}
+
+.open {
+    transform: rotate(90deg);
+    transform: translateY(0px);
+}
+
+.open .hamburger-top {
+    transform: rotate(45deg) translateY(6px) translateX(6px);
+}
+.open .hamburger-middle {
+    display: none;
+}
+.open .hamburger-bottom {
+    transform: rotate(-45deg) translateY(6px) translateX(-6px);
+}
+.join {
+    max-width: 24rem;
+}
+.ficon:hover {
+    filter: invert(79%) sepia(61%) saturate(464%) hue-rotate(130deg) brightness(89%) contrast(85%);
+}
+.responsive {
+    max-width: 19rem;
+}
+
+.search {
+    background: #D2FF28;
+}
+
+.allproduct {
+    width: 200px;
+    height: 40px;
+    margin-top: 2rem;
+    margin-left: 4em;
+}
+
+@media screen and (max-width: 264px) { 
+    .response {
+        width: 270px;
+    }
+}
+
+@media screen and (max-width: 323px) {
+    .productadjust {
+        width: 10rem;
+        margin-left: 75px;
+        margin-right: 75px;
+    }
+    .arrows {
+        margin-right: 60px;
+    }
+}
+
+/* .trendy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+} */
+
+/* .trendy span {
+    text-transform: capitalize;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+} */
+
+/* @media screen and (max-width: 288px) {
+    .trendy {
+        margin-left: auto;
+        margin-right: auto;
+        display: table;
+    }
+    .trendy span {
+        font-size: 1.3rem;
+    }
+}
+@media screen and (max-width: 214px) {
+    .trendy span {
+        font-size: 1.1rem;
+    }
+} */
