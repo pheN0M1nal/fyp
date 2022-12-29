@@ -9,7 +9,7 @@ import img4 from '../assets/images/winter-forest-trees-landscape-frost-snow-cove
 function Home() {
   return (
     <>
-      <div className='container flex flex-col max-w-full'>
+      <div className='container flex flex-col min-w-full'>
         {/* First Section: Main heading with search bar and Picture */}
         <section className='search'>
           <div className='container flex flex-col mx-0 sm:mx-auto sm:items-start'>
@@ -199,7 +199,7 @@ function Home() {
         {/*Sub Categories button*/}
         <div className='flex search'>
           <div className='flex flex-col items-center subcateg mx-auto space-y-6 space-x-0 text-zinc-700 font-bold search categ sm:flex-row sm:h-96 sm:space-x-16 sm:space-y-0 sm:mt-0'>
-            <div className='shadow-2xl rounded-2xl mt-5 sm:mt-0'>
+            <div className='shadow-2xl rounded-2xl mt-5'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 xmlnsXlink='http://www.w3.org/1999/xlink'

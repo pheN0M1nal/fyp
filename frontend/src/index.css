@@ -91,9 +91,18 @@
     justify-content: center;
 }
 
+.res {
+    min-width: 320px;
+    max-width: 320px;
+}
+
 @media screen and (max-width: 304px) {
 .subcateg {
     min-width: 320px;
+}
+.res {
+    align-items: center;
+    text-align: center;
 }
 }
 .textsize {
@@ -104,3 +113,8 @@
 
     height: 46rem;
 }
+/* @media screen and (max-width: 752px) and (min-width: 638px) {
+    .subcateg1 {
+        max-width: 100%;
+    }
+} */

@@ -6,37 +6,33 @@ import twitterlogo from '../assets/svg/icon-twitter.svg'
 const Footer = () => {
   return (
     <>
-      <footer className='py-16 bg-slate-800 mt-10 response'>
-        <div className='container flex flex-col items-center justify-between mx-auto space-y-6 md:flex-row md:space-y-0 md:items-start'>
-          {/* Logo */}
-          <h1 className='text-gray-500 text-4xl'>STee</h1>
-          {/* Menu Container */}
-          <div className='flex flex-col space-y-16 md:space-x-20 md:flex-row md:space-y-0'>
-            {/* Menu 1 */}
-            <div className='flex flex-col items-center text-gray-500 md:items-start'>
-              <div className='text-3xl'>Stay up to date with our story</div>
-              <div className='join mt-5'>
-                Join and be the first to get the latest news about trend,
-                promotions, and much more!
-              </div>
-              <div className='mt-5 border border-slate-700 rounded-md'>
-                <div className='flex flex-row items-center media'>
-                  <form action=''>
-                    <input
-                      type='email'
-                      className='p-3 items-center focus:outline-none text-gray-400 bg-slate-800 transition-all'
-                      placeholder='Enter your email address'
-                    />
-                    <button className='ml-3 mr-2 text-gray-500 hover:text-gray-400 media'>
-                      Join now
-                    </button>
-                  </form>
-                </div>
-              </div>
+      <footer className='py-16 bg-slate-800 mt-10 subcateg subcateg1 sm:max-w-full'>
+        <div className='container flex flex-col items-center justify-between mx-auto space-y-6 bg-slate-800 md:flex-row md:space-y-0 md:items-start'>
+          <div className='flex flex-col text-gray-500 res'>
+            <div className='text-3xl'>Stay up to date with our story</div>
+            <div className='join mt-5'>
+              Join and be the first to get the latest news about trend,
+              promotions, and much more!
             </div>
+            <div className='flex flex-row items-center mt-5 border border-slate-700 rounded-md'>
+              <form action=''>
+                <input
+                  type='email'
+                  className='h-14 ml-4 items-center focus:outline-none text-gray-400 bg-slate-800 transition-all placeholder:text-sm'
+                  placeholder='Enter your email address'
+                />
+                <div className='inline'>
+                  <button className=' text-gray-500 hover:text-gray-400'>
+                    Join now
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div className='flex flex-col space-y-16 bg-slate-800 md:flex-row md:space-x-32 md:space-y-0'>
             {/* Menu 2 */}
-            <div className='flex flex-col items-center text-gray-500 md:items-start'>
-              <div className='flex flex-col items-center space-y-3 md:items-start'>
+            <div className='flex flex-col items-center text-gray-500 bg-slate-800'>
+              <div className='flex flex-col items-center space-y-3'>
                 <a href='#' className='capitalize hover:text-gray-400'>
                   Blog
                 </a>
@@ -48,14 +44,14 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-            {/* Menu 2 */}
-            <div className='flex flex-col items-center text-gray-500 md:items-start'>
-              <div className='flex flex-col items-center space-y-3 md:items-start'>
+            {/* Menu  3 */}
+            <div className='flex flex-col items-center text-gray-500 bg-slate-800'>
+              <div className='flex flex-col items-center space-y-3'>
                 <a href='#' className='capitalize hover:text-gray-400'>
                   About
                 </a>
                 <a href='#' className='capitalize hover:text-gray-400'>
-                  Our Team
+                  Team
                 </a>
                 <a href='#' className='capitalize hover:text-gray-400'>
                   Careers

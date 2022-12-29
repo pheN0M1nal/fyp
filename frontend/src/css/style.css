@@ -648,20 +648,16 @@ video {
   margin-top: 1.25rem;
 }
 
-.ml-3 {
-  margin-left: 0.75rem;
-}
-
-.mr-2 {
-  margin-right: 0.5rem;
+.ml-4 {
+  margin-left: 1rem;
 }
 
 .mr-0 {
   margin-right: 0px;
 }
 
-.ml-4 {
-  margin-left: 1rem;
+.ml-3 {
+  margin-left: 0.75rem;
 }
 
 .mt-20 {
@@ -700,12 +696,12 @@ video {
   display: none;
 }
 
-.h-80 {
-  height: 20rem;
-}
-
 .h-14 {
   height: 3.5rem;
+}
+
+.h-80 {
+  height: 20rem;
 }
 
 .h-40 {
@@ -742,6 +738,15 @@ video {
 
 .w-52 {
   width: 13rem;
+}
+
+.min-w-full {
+  min-width: 100%;
+}
+
+.min-w-max {
+  min-width: -webkit-max-content;
+  min-width: max-content;
 }
 
 .max-w-full {
@@ -892,16 +897,16 @@ video {
   background-color: rgb(63 63 70 / var(--tw-bg-opacity));
 }
 
-.p-3 {
-  padding: 0.75rem;
-}
-
 .p-5 {
   padding: 1.25rem;
 }
 
 .p-6 {
   padding: 1.5rem;
+}
+
+.p-3 {
+  padding: 0.75rem;
 }
 
 .p-8 {
@@ -941,14 +946,14 @@ video {
   text-align: center;
 }
 
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .text-sm {
@@ -1147,9 +1152,19 @@ video {
   justify-content: center;
 }
 
+.res {
+  min-width: 320px;
+  max-width: 320px;
+}
+
 @media screen and (max-width: 304px) {
   .subcateg {
     min-width: 320px;
+  }
+
+  .res {
+    align-items: center;
+    text-align: center;
   }
 }
 
@@ -1159,8 +1174,14 @@ video {
 }
 
 .categ {
-  height: 44rem;
+  height: 46rem;
 }
+
+/* @media screen and (max-width: 752px) and (min-width: 638px) {
+    .subcateg1 {
+        max-width: 100%;
+    }
+} */
 
 .placeholder\:font-sans::-webkit-input-placeholder {
   font-family: Poppins, sans-serif;
@@ -1168,6 +1189,16 @@ video {
 
 .placeholder\:font-sans::placeholder {
   font-family: Poppins, sans-serif;
+}
+
+.placeholder\:text-sm::-webkit-input-placeholder {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.placeholder\:text-sm::placeholder {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .placeholder\:font-light::-webkit-input-placeholder {
@@ -1240,6 +1271,10 @@ video {
     width: 32rem;
   }
 
+  .sm\:max-w-full {
+    max-width: 100%;
+  }
+
   .sm\:flex-row {
     flex-direction: row;
   }
@@ -1276,10 +1311,10 @@ video {
     margin-bottom: calc(0px * var(--tw-space-y-reverse));
   }
 
-  .md\:space-x-20 > :not([hidden]) ~ :not([hidden]) {
+  .md\:space-x-32 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-x-reverse: 0;
-    margin-right: calc(5rem * var(--tw-space-x-reverse));
-    margin-left: calc(5rem * calc(1 - var(--tw-space-x-reverse)));
+    margin-right: calc(8rem * var(--tw-space-x-reverse));
+    margin-left: calc(8rem * calc(1 - var(--tw-space-x-reverse)));
   }
 }
 
