@@ -91,18 +91,12 @@
     justify-content: center;
 }
 
-/* @media screen and (max-width: 288px) {
-    .trendy {
-        margin-left: auto;
-        margin-right: auto;
-        display: table;
-    }
-    .trendy span {
-        font-size: 1.3rem;
-    }
+@media screen and (max-width: 304px) {
+.subcateg {
+    min-width: 320px;
 }
-@media screen and (max-width: 214px) {
-    .trendy span {
-        font-size: 1.1rem;
-    }
-} */
+}
+.textsize {
+    font-size: 26px;
+    line-height: 32px;
+}
