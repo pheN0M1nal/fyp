@@ -1,64 +1,69 @@
-import React from "react";
-import axios from "axios";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import validator from "validator";
+import React from "react"
+import axios from "axios"
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
+import validator from "validator"
+import { register } from "../store/actions/userActions"
+import { useDispatch } from "react-redux"
+
 function SignUp() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [emailerror, setError] = useState(false);
-  const [check, setCheck] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
+  const [emailerror, setError] = useState(false)
+  const [check, setCheck] = useState(false)
+
+  const dispatch = useDispatch()
 
   //form data contains all fields data in application like input fields {represents object}
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-  });
+  })
   //to use email/pasword anywhere in our app we need to de-structure them from formData
-  const { name, email, password } = formData;
+  const { name, email, password } = formData
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   function isValidEmail(mail) {
-    return /\S+@\S+\. \S+/.test(mail);
+    return /\S+@\S+\. \S+/.test(mail)
   }
 
   const addName = (e) => {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.id]: e.target.value,
-    }));
-  };
+    }))
+  }
 
   const addEmail = (e) => {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.id]: e.target.value,
-    }));
+    }))
     if (!isValidEmail(e.target.value)) {
-      setError("Invalid Email");
+      setError("Invalid Email")
     } else {
-      setError(null);
-      var errorMsg = document.querySelector(".errorMsg");
+      setError(null)
+      var errorMsg = document.querySelector(".errorMsg")
       axios
         .get("url", {
           email: e.target.value,
         })
         .then((data) => {
-          errorMsg.classList.remove("hidden");
+          errorMsg.classList.remove("hidden")
         })
         .catch((error) => {
-          errorMsg.classList.add("hidden");
-        });
+          errorMsg.classList.add("hidden")
+        })
     }
-  };
+  }
 
   const validate = (e) => {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.id]: e.target.value,
-    }));
+    }))
     if (
       validator.isStrongPassword(email, {
         minLength: 8,
@@ -68,35 +73,36 @@ function SignUp() {
         minSymbols: 1,
       })
     ) {
-      setCheck(true);
+      setCheck(true)
       setFormData((prevState) => ({
         ...prevState,
         [e.target.id]: e.target.value,
-      }));
+      }))
     } else {
-      setCheck(false);
+      setCheck(false)
     }
-  };
+  }
   const togglePasswordEye = () => {
-    var set_signin_eye = document.querySelector(".changeeye");
+    var set_signin_eye = document.querySelector(".changeeye")
     if (showPassword) {
-      set_signin_eye.classList.remove("fa-eye-slash");
-      set_signin_eye.classList.add("fa-eye");
+      set_signin_eye.classList.remove("fa-eye-slash")
+      set_signin_eye.classList.add("fa-eye")
     } else {
-      set_signin_eye.classList.add("fa-eye-slash");
-      set_signin_eye.classList.remove("fa-eye");
+      set_signin_eye.classList.add("fa-eye-slash")
+      set_signin_eye.classList.remove("fa-eye")
     }
-    setShowPassword((prevState) => !prevState);
-  };
+    setShowPassword((prevState) => !prevState)
+  }
 
   const onSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
+    dispatch(register(formData.name, formData.email, formData.password))
     try {
-      navigate("/");
+      navigate("/")
     } catch (error) {
-      toast.error("Something went wrong with registration");
+      toast.error("Something went wrong with registration")
     }
-  };
+  }
 
   return (
     <>
@@ -125,7 +131,7 @@ function SignUp() {
                   "
                   >
                     <input
-                      type="url"
+                      type="email"
                       className="p-3 w-full rounded-md text-slate-700 placeholder:font-sans placeholder:font-light italic transition-all focus:outline-violet-600"
                       placeholder="Enter your email address"
                       id="email"
@@ -194,7 +200,7 @@ function SignUp() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default SignUp;
+export default SignUp

@@ -1,38 +1,39 @@
-import { combineReducers, applyMiddleware, createStore } from "redux";
-import thunk from "redux-thunk";
+import { combineReducers, applyMiddleware, createStore, compose } from "redux"
+import {
+  userLoginReducer,
+  userRegisterReducer,
+  userDetailsReducer,
+} from "./reducers/userReducers"
+import thunk from "redux-thunk"
 
 const reducer = combineReducers({
-  productList: productListReducer,
-});
+  userLogin: userLoginReducer,
+  userRegister: userRegisterReducer,
+  userDetails: userDetailsReducer,
+})
 
-const bindMiddleware = (middleware) => {
-  if (Server_API_URL.includes("beta1")) {
-    const composeEnhancers =
-      window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;
-    return composeEnhancers(middleware);
-  }
-  return middleware;
-};
+// const bindMiddleware = (middleware) => {
+//   const composeEnhancers = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose
+//   return composeEnhancers(middleware)
+// }
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
-  : null;
+  : null
 
 const initialState = {
   userLogin: { userInfo: userInfoFromStorage },
-};
+}
 
-const middleware = [thunk, bindMiddleware];
+const middleware = [thunk]
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   reducer,
   initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
-);
+  /* preloadedState, */ composeEnhancers(applyMiddleware(...middleware))
+)
 
-export default store;
+//const store = createStore(reducer, initialState, applyMiddleware(...middleware))
 
-// const store = createStore(
-//   reducer /* preloadedState, */,
-//   +window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-// );
+export default store
