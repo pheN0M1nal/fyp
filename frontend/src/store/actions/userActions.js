@@ -24,13 +24,18 @@ export const login = (email, password) => async (dispatch) => {
     }
 
     const { data } = await axios.post(
-      "/api/users/loginUser",
+      "http://127.0.0.1:5000/api/users/loginUser",
       { email, password },
       config
     )
 
     dispatch({
       type: USER_LOGIN_SUCCESS,
+      payload: data,
+    })
+
+    dispatch({
+      type: USER_DETAILS_SUCCESS,
       payload: data,
     })
 
