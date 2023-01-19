@@ -12,9 +12,12 @@ const usersSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    userState: {
+        type: String,
+        required: true
     }
 });
-
 
 
 const User = mongoose.model('User', usersSchema);

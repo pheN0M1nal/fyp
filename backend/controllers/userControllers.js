@@ -1,6 +1,8 @@
 const User = require('../models/users')
 const asyncHandler = require('express-async-handler') 
 const bcrypt = require('bcrypt')
+const { generateToken } = require('../utilities/jwt.js') 
+
 
 const registerUser = asyncHandler(async (req, res) => {
 
@@ -15,17 +17,23 @@ const registerUser = asyncHandler(async (req, res) => {
         bcrypt.genSalt(saltRounds, function(err, salt) {
             bcrypt.hash(password, salt, function(err, password) {
                 // Store hash in your password DB.
+
                 const user = new User(
                     {
                         myName,
                         email,
-                        password
+                        password,
+                        userState: 'Costumer'
                     }
                 )
 
                 user.save()
                 .then((result) => {
-                    res.send(result)
+                    res.json({name: myName,
+                                email: email,
+                                state: result.userState,
+                                id: result.id,
+                                token: generateToken(result.id)})
                 })
                 .catch((err) => {
                     console.log(err)
@@ -47,9 +55,11 @@ const loginUser = asyncHandler(async (req, res) => {
 
         if(flag){
             res.json({
-                myNname: user.myName,
+                myName: user.myName,
                 email: user.email,
-                password: password
+                id: user.id,
+                token: generateToken(user.id)
+                
             })
         }
         else {
