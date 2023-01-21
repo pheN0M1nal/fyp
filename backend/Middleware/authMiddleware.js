@@ -31,4 +31,5 @@ const protected = asyncHandler(async (req, res, next) => {
 
 })
 
+
 module.exports = { protected }
