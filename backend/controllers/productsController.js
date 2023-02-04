@@ -1,12 +1,32 @@
 const Product = require('../models/products')
 const asyncHandler = require('express-async-handler') 
+const multer = require('multer')
+const path = require('path')
+
+
+const storage = multer.diskStorage({
+
+    destination: function(req, file, cb) {
+      cb(null, '../upload/images');
+    },
+    filename: function(req, file, cb) {
+      cb(null, file.fieldname + '_' + Date.now() + path.extname(file.originalname));
+    }
+
+});
+  
+const upload = multer({ 
+
+    storage: storage 
+
+});
 
 
 const createProduct = asyncHandler(async (req, res) => {
 
     console.log('Creating product')
-
-    const {designerID, productName, image, category, price, description, quantity, size} = req.body
+    console.log(req.body)
+    const {designerID, productName, image , category, price, description, quantity, size} = req.body
 
     const product = Product({
         designerID,
@@ -61,6 +81,7 @@ const getProductById = asyncHandler(async (req, res) => {
     }
 })
 
+
 const updateProduct = asyncHandler(async (req, res) => {
   
     const {designerID, productName, image, category, price, description, quantity, size} = req.body
@@ -104,6 +125,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 
 })
 
+
 const getProductsByDesinerID = asyncHandler(async (req, res) => {
     const id = req.params.id
     const products = await Product.find({designerID: id})
@@ -117,6 +139,7 @@ const getProductsByDesinerID = asyncHandler(async (req, res) => {
         throw new Error('Unable to get the products')
     }
 })
+
 
 const getProductByCategory = asyncHandler(async (req, res) => {
     const category = req.params.category
