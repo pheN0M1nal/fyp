@@ -8,7 +8,9 @@ const createProduct = asyncHandler (async (req, res) => {
 
     console.log('Creating product')
     console.log(process.env.IMAGE_UPLOAD_DIR)
-    let form = new multiparty.Form({uploadDir: process.env.IMAGE_UPLOAD_DIR})
+    console.log("Path.res() = " + path.resolve())
+    const path_ = path.join(path.resolve(), "/backend/upload/images") 
+    let form = new multiparty.Form({uploadDir: ''})
     form.parse(req, async function(err, fields, files){
         if(err) return res.send({error: err.message})
 
