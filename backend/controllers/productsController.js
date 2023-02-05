@@ -1,57 +1,50 @@
 const Product = require('../models/products')
-const asyncHandler = require('express-async-handler') 
-const multer = require('multer')
+const asyncHandler = require('express-async-handler')
+const multiparty = require('multiparty')
 const path = require('path')
 
 
-const storage = multer.diskStorage({
-
-    destination: function(req, file, cb) {
-      cb(null, '../upload/images');
-    },
-    filename: function(req, file, cb) {
-      cb(null, file.fieldname + '_' + Date.now() + path.extname(file.originalname));
-    }
-
-});
-  
-const upload = multer({ 
-
-    storage: storage 
-
-});
-
-
-const createProduct = asyncHandler(async (req, res) => {
+const createProduct = asyncHandler (async (req, res) => {
 
     console.log('Creating product')
-    console.log(req.body)
-    const {designerID, productName, image , category, price, description, quantity, size} = req.body
+    console.log(process.env.IMAGE_UPLOAD_DIR)
+    let form = new multiparty.Form({uploadDir: process.env.IMAGE_UPLOAD_DIR})
+    form.parse(req, async function(err, fields, files){
+        if(err) return res.send({error: err.message})
 
-    const product = Product({
-        designerID,
-        productName, 
-        image, 
-        category, 
-        price, 
-        description, 
-        quantity, 
-        size
-    })
+        console.log('fields = ' + JSON.stringify(fields, null, 2))
+        console.log('files = ' + JSON.stringify(files, null, 2))
 
-    product.save()
-    .then((result) => {
-        res.json({
-            "product": product 
+        const product = Product({
+            designerID: fields.designerID[0],
+            productName: fields.productName[0], 
+            image: files.image[0].originalFilename, 
+            category: fields.category[0], 
+            price: fields.price[0], 
+            description: fields.description[0], 
+            quantity: fields.quantity[0], 
+            size: fields.size[0]
         })
-    })
-    .catch((err) => {
-        console.log(err)
-        res.status(400).json({
-            "Error": err 
+    
+        await product.save()
+        .then((result) => {
+            res.json({
+                "product": product 
+            })
         })
-        throw new Error('err')
+        .catch((err) => {
+            console.log(err)
+            res.status(400).json({
+                "Error": err 
+            })
+    
+            throw new Error('err')
+        })
+    
+
     })
+    // console.log(req.body)
+    // const {designerID, productName, image, category, price, description, quantity, size} = req.body
 })
 
 
