@@ -4,28 +4,42 @@ const multiparty = require('multiparty')
 const path = require('path')
 
 
+
 const createProduct = asyncHandler (async (req, res) => {
 
     console.log('Creating product')
     console.log(process.env.IMAGE_UPLOAD_DIR)
-    console.log("Path.res() = " + path.resolve())
-    const path_ = path.join(path.resolve(), "/backend/upload/images") 
-    let form = new multiparty.Form({uploadDir: ''})
+    const path_ = path.join(path.resolve(), '/backend/uploads/images')
+    console.log('Path :', path_)
+    let form = new multiparty.Form({
+        autoFiles: true,
+        uploadDir: path_
+    })
+
     form.parse(req, async function(err, fields, files){
         if(err) return res.send({error: err.message})
 
         console.log('fields = ' + JSON.stringify(fields, null, 2))
         console.log('files = ' + JSON.stringify(files, null, 2))
+        
+        var img_ = []
+        for (img in files.image){
+            
+            const imagePath = files.image[0].path
+            const fileName = imagePath.slice(imagePath.lastIndexOf("/") + 1)
+            img_.push("http://localhost:5000/images/" + fileName)
+        
+        }
 
         const product = Product({
             designerID: fields.designerID[0],
             productName: fields.productName[0], 
-            image: files.image[0].originalFilename, 
+            image: img_, 
             category: fields.category[0], 
             price: fields.price[0], 
             description: fields.description[0], 
-            quantity: fields.quantity[0], 
-            size: fields.size[0]
+            quantity: fields.quantity, 
+            size: fields.size
         })
     
         await product.save()
@@ -150,5 +164,18 @@ const getProductByCategory = asyncHandler(async (req, res) => {
     }
 })
 
+const getAllProducts = asyncHandler(async (req, res) => {
+    const limit = Number(req.query.limit) || 10
+    const page = Number(req.query.page) || 1
+
+    var skip = (page - 1) * limit
+    
+    await Product.find({}).limit(limit).skip(skip).then(function (products) {
+        
+        res.send(products);
+        
+    })
+})
+
 module.exports = {createProduct, deleteProduct, getProductById, updateProduct,
-                    getProductsByDesinerID, getProductByCategory}
+                    getProductsByDesinerID, getProductByCategory, getAllProducts}
