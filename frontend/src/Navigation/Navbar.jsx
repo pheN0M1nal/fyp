@@ -1,19 +1,44 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-
+import 'remixicon/fonts/remixicon.css'
 // const btn = document.getElementById('menu-btn')
 // const menu = document.getElementById('menu')
 
-//Toggle Mobile Menu
-const onClick = () => {
-  var btn = document.getElementById('menu-btn')
-  var menu = document.getElementById('menu')
-  btn.classList.toggle('open')
-  menu.classList.toggle('flex')
-  menu.classList.toggle('hidden')
-}
-
 const Navbar = () => {
+  //Toggle Mobile Menu
+  const onClick = () => {
+    var btn = document.getElementById('menu-btn')
+    var menu = document.getElementById('menu')
+    btn.classList.toggle('open')
+    menu.classList.toggle('flex')
+    menu.classList.toggle('hidden')
+  }
+
+  const drop = () => {
+    var menu = document.querySelector('.dropdown')
+    if (menu.classList.contains('hidden')) {
+      menu.classList.remove('hidden')
+    } else {
+      menu.classList.add('hidden')
+    }
+  }
+  const drop1 = () => {
+    var menu = document.querySelector('.dropdown1')
+    if (menu.classList.contains('hidden')) {
+      menu.classList.remove('hidden')
+    } else {
+      menu.classList.add('hidden')
+    }
+  }
+
+  const userDetails = useSelector((state) => state.userDetails)
+  const { user } = userDetails
+
+  const logout = (e) => {
+    e.preventDefault()
+  }
+
   return (
     <>
       <nav className='container mx-auto p-5'>
@@ -38,14 +63,46 @@ const Navbar = () => {
             </div>
           </div>
           {/* Right Menu */}
-          <div className='items-center hidden lg:flex font-bold'>
+
+          <div className='items-center hidden lg:flex font-boldh text-zinc-700'>
             <div className='px-7 py-3'>
-              <Link
-                to='/sign-in'
-                className='text-zinc-700 hover:text-veryDarkViolet'
-              >
-                SignIn/SignUp
-              </Link>
+              {user?.myNname ? (
+                <div className='relative inline-block text-left'>
+                  <div className='inline-flex w-full'>
+                    <button
+                      className='text-zinc-700 hover:text-veryDarkViolet'
+                      type='button'
+                      onClick={drop}
+                    >
+                      {user?.myNname}
+                      <i className='ri-arrow-drop-down-line'></i>
+                    </button>
+                  </div>
+                  <div className='dropdown absolute right-0 z-10 hidden mt-2 w-56 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                    <div className='class="py-1"' role='none'>
+                      <Link
+                        to='/profile'
+                        className='text-gray-700 block px-4 py-2 text-sm hover:text-black'
+                      >
+                        Profile
+                      </Link>
+                      <a
+                        href='#'
+                        className='text-gray-700 block px-4 py-2 text-sm hover:text-black'
+                      >
+                        Logout
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  to='/sign-in'
+                  className='text-zinc-700 hover:text-veryDarkViolet'
+                >
+                  SignIn/SignUp
+                </Link>
+              )}
             </div>
           </div>
           {/* HamBurger */}
@@ -77,9 +134,46 @@ const Navbar = () => {
             <Link to='/' className='nav-links'>
               About
             </Link>
-            <Link to='/sign-in' className='nav-links'>
-              SignIn/SignUp
-            </Link>
+            <div>
+              {user?.myNname ? (
+                <div className='relative inline-block text-left'>
+                  <div className='inline-flex w-full'>
+                    <button
+                      className='text-zinc-700 hover:text-veryDarkViolet'
+                      type='button'
+                      onClick={drop1}
+                    >
+                      {user?.myNname}
+                      <i className='ri-arrow-drop-down-line'></i>
+                    </button>
+                  </div>
+                  <div className='dropdown1 absolute z-10 hidden mt-2 w-44 origin-bottom-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                    <div className='class="py-1"' role='none'>
+                      <Link
+                        to='/profile'
+                        className='text-gray-700 block px-4 py-2 text-sm hover:text-veryDarkViolet'
+                      >
+                        Profile
+                      </Link>
+
+                      <a
+                        href='#'
+                        className='text-gray-700 block px-4 py-2 text-sm'
+                      >
+                        Logout
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  to='/sign-in'
+                  className='text-zinc-700 hover:text-veryDarkViolet'
+                >
+                  SignIn/SignUp
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </nav>
