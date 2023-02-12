@@ -45,8 +45,8 @@ const Navbar = () => {
 
           <div className='items-center hidden lg:flex font-bold'>
             <div className='px-7 py-3'>
-              {user.myNname ? (
-                user.myNname
+              {user?.myNname ? (
+                user?.myNname
               ) : (
                 <Link
                   to='/sign-in'
