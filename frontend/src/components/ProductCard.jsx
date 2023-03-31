@@ -7,7 +7,7 @@ const ProductCard = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center h-72 w-36 shadow-lg text-[10px] rounded-md">
+      <div className="flex flex-col items-center h-72 w-48 shadow-lg text-[10px] rounded-md">
         <div className="h-44 w-32 mt-2">
           {/* image */}
           {/* <img src={product.path[0]} alt="" className="w-24 h-24" /> */}

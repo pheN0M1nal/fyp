@@ -48,7 +48,7 @@ function Home() {
         {/* Best Product Category */}
         <section className="mt-20">
           <div className="container flex flex-col mx-auto max-w-full sm:flex-row">
-            <div className="flex flex-col w-80 h-40 mx-0 sm:mx- sm:items-start">
+            <div className="flex flex-col w-80 h-40 mx-0 sm:items-start">
               <span className="capitalize text-4xl font-bold text-zinc-700 ml-7">
                 Best Product Category
               </span>
