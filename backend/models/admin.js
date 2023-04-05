@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const usersSchema = mongoose.Schema({
+const adminSchema = mongoose.Schema({
         _id:{
             type: mongoose.Schema.Types.ObjectId,
             auto: true
@@ -24,5 +24,5 @@ const usersSchema = mongoose.Schema({
 );
 
 
-const User = mongoose.model('User', usersSchema);
-module.exports = User;
+const Admin = mongoose.model('Admin', adminSchema);
+module.exports = Admin;

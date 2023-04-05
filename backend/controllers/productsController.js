@@ -15,7 +15,7 @@ const createProduct = asyncHandler (async (req, res) => {
         autoFiles: true,
         uploadDir: path_
     })
-
+    
     form.parse(req, async function(err, fields, files){
         if(err) return res.send({error: err.message})
 
@@ -39,7 +39,11 @@ const createProduct = asyncHandler (async (req, res) => {
             price: fields.price[0], 
             description: fields.description[0], 
             quantity: fields.quantity, 
-            size: fields.size
+            size: fields.size,
+            avgRating: 0,
+            noOfReviews: 0,
+            noOfSales: 0
+
         })
     
         await product.save()
@@ -177,5 +181,36 @@ const getAllProducts = asyncHandler(async (req, res) => {
     })
 })
 
+const placeRating = asyncHandler(async (req,res) => {
+    const {avgRating, noOfReviews} = req.body
+    console.log(req.params.id)
+    const product = await Product.findById(req.params.id)
+    console.log(product)
+
+    if(product){
+        product.noOfReviews = noOfReviews + 1
+        product.avgRating = (avgRating*noOfReviews + req.params.rating) / (noOfReviews+1)
+
+        try{
+            await product.save()
+            res.json({
+                "product": product
+            })
+        }
+        catch(err){
+            res.status(400).json({
+                "err": err
+            })
+            
+        }
+    }
+    else {
+
+        res.status(404)
+        throw new Error('Product not found')
+
+    }
+})
+
 module.exports = {createProduct, deleteProduct, getProductById, updateProduct,
-                    getProductsByDesinerID, getProductByCategory, getAllProducts}
+                    getProductsByDesinerID, getProductByCategory, getAllProducts, placeRating}
