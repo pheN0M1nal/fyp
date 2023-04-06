@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import FilterBar from "../../components/FilterBar";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../components/product/ProductCard";
 
 function AllProducts() {
   const [products, setProducts] = useState([]);

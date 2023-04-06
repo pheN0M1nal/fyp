@@ -1,5 +1,5 @@
 import React from "react";
-import shoe from "../assets/images/irene-kredenets-dwKiHoqqxk8-unsplash.jpeg";
+import shoe from "../../assets/images/irene-kredenets-dwKiHoqqxk8-unsplash.jpeg";
 import "remixicon/fonts/remixicon.css";
 import { useState } from "react";
 const ProductCard = () => {
