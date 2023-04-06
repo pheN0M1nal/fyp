@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Review = require('./reviews');
+const Review = require('./reviews').schema;
 
 const productsSchema = mongoose.Schema(
     {
@@ -38,7 +38,6 @@ const productsSchema = mongoose.Schema(
         noOfReviews: {
             type: Number,
         }
-
     },
     {
         timestamps: true
