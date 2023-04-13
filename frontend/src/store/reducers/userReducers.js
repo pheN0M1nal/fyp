@@ -16,12 +16,6 @@ import {
   USER_REGISTER_SUCCESS,
 } from "../constants/userConstants";
 
-import {
-  PRODUCT_REQUEST,
-  PRODUCT_SUCCESS,
-  PRODUCT_FAIL,
-} from "../constants/productDetailConstants";
-
 export const userLoginReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_LOGIN_REQUEST:
@@ -64,19 +58,6 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
       return { loading: false, userInfo: {} };
     case USER_LOGOUT:
       return { loading: false, userInfo: {} };
-    default:
-      return state;
-  }
-};
-
-export const productDetailReducer = (state = {}, action) => {
-  switch (action.type) {
-    case PRODUCT_REQUEST:
-      return { loading: false, products: action.payload };
-    case PRODUCT_SUCCESS:
-      return { loading: false, products: action.payload };
-    case PRODUCT_FAIL:
-      return { loading: false, productsInfo: {} };
     default:
       return state;
   }

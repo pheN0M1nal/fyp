@@ -13,12 +13,6 @@ import {
   USER_REGISTER_SUCCESS,
 } from "../constants/userConstants";
 
-import {
-  PRODUCT_REQUEST,
-  PRODUCT_SUCCESS,
-  PRODUCT_FAIL,
-} from "../constants/productDetailConstants";
-
 export const login = (email, password) => async dispatch => {
   try {
     dispatch({
@@ -137,37 +131,4 @@ export const logout = () => async dispatch => {
       type: USER_LOGOUT,
     });
   } catch (error) {}
-};
-
-//Fetch All Products
-export const getProducts = id => async (dispatch, getState) => {
-  try {
-    dispatch({
-      type: PRODUCT_REQUEST,
-    });
-    const {
-      getProduct: { productInfo },
-    } = getState();
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${productInfo.token}`,
-      },
-    };
-
-    const { data } = await axios.get(`/api/users/${id}`, config);
-
-    dispatch({
-      type: PRODUCT_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch({
-      type: PRODUCT_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
 };

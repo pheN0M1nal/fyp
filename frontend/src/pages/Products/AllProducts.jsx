@@ -35,21 +35,9 @@ function AllProducts() {
         </div>
 
         <div className="flex flex-wrap gap-7 items-center justify-center p-40">
-          {/* {products.map(product => (
+          {products.map(product => (
             <ProductCard product={product} />
-          ))} */}
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          ))}
         </div>
       </div>
     </>
