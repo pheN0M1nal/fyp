@@ -8,10 +8,13 @@ const ShopSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             auto: true
         },
-        designer: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-            required: true
+        shopName: {
+            type: String,
+            default: ""
+        },
+        shopDescription: {
+            type: String,
+            default: ""
         },
         products: [Product],
         order: [Order]

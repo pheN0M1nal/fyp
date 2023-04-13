@@ -7,6 +7,10 @@ const productsSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             auto: true
         },
+        productName: {
+            type: String,
+            required: true
+        },
         image: {
             type: [String],
             required: true
@@ -33,10 +37,13 @@ const productsSchema = mongoose.Schema(
         },
         reviews: [Review],
         avgRating: {
-            type: Number,
+            type: Number
         },    
         noOfReviews: {
-            type: Number,
+            type: Number
+        },
+        noOfSales: {
+            type: Number
         }
     },
     {

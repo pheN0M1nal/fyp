@@ -23,17 +23,17 @@ const registerUser = asyncHandler(async (req, res) => {
                         myName,
                         email,
                         password,
-                        userState: 'Costumer'
                     }
                 )
 
                 user.save()
                 .then((result) => {
-                    res.json({name: myName,
-                                email: email,
-                                state: result.userState,
-                                id: result.id,
-                                token: generateToken(result.id)})
+                    res.json({
+                        
+                        myName: myName,
+                        email: email,
+                        id: result.id,
+                        token: generateToken(result.id)})
                 })
                 .catch((err) => {
                     console.log(err)

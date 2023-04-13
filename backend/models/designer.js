@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Shop = require('./shop').schema
 
 const designersSchema = mongoose.Schema(
     {
@@ -14,6 +15,13 @@ const designersSchema = mongoose.Schema(
             type: String,
             required: true, unique: 'That email is already taken'
         },
+        password: {
+            type: String,
+            required: true
+        },
+        shop: {
+            Shop
+        },
         accountName: {
             type: String,
             required: true
@@ -28,15 +36,18 @@ const designersSchema = mongoose.Schema(
         },
         totalNoOfOrders: {
             type: Number,
-            required: true
+            required: true,
+            default: 0
         },
         totalSales: {
             type: Number,
-            required: true
+            required: true,
+            default: 0
         },
         avdRatingOfProducts: {
             type: Number,
-            required: true
+            required: true,
+            default: 0
         }
 
 

@@ -32,7 +32,6 @@ const createProduct = asyncHandler (async (req, res) => {
         }
 
         const product = Product({
-            designerID: fields.designerID[0],
             productName: fields.productName[0], 
             image: img_, 
             category: fields.category[0], 
@@ -40,6 +39,7 @@ const createProduct = asyncHandler (async (req, res) => {
             description: fields.description[0], 
             quantity: fields.quantity, 
             size: fields.size,
+            reviews: [],
             avgRating: 0,
             noOfReviews: 0,
             noOfSales: 0
@@ -73,20 +73,6 @@ const deleteProduct = asyncHandler(async (req, res) => {
     if (product) {
         await product.remove()
         res.json({ message: 'Product removed.' })
-    } 
-    else {
-        res.status(404)
-        throw new Error('Product not found')
-    }
-})
-  
-
-const getProductById = asyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id)
-    console.log(product)
-    console.log(req.params.id)
-    if (product) {
-        res.json(product)
     } 
     else {
         res.status(404)
@@ -145,6 +131,22 @@ const getProductsByDesinerID = asyncHandler(async (req, res) => {
     if(products){
         res.json({
             products
+        })
+    }
+    else{
+        res.status(400)
+        throw new Error('Unable to get the products')
+    }
+})
+
+const getProductById = asyncHandler(async (req, res) => {
+    const id = req.params.id
+    console.log(id)
+    const product = await Product.findById(id)
+    console.log(product)
+    if(product){
+        res.json({
+            product
         })
     }
     else{
